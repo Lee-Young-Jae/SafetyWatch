@@ -19,14 +19,16 @@ export const getTodayCasualty = (news: News) => {
     (acc, cur) => {
       const parsedContents = parseHtmlNews(cur.contents);
       const date = parsedContents[0];
+      console.log(todayString, date);
       if (date.includes(todayString)) {
-        const match = parsedContents[3].match(/(사망|부상) (\d+)명/);
-        if (match) {
-          if (match[1] === "사망") {
-            acc[0] += parseInt(match[2]);
-          } else {
-            acc[1] += parseInt(match[2]);
-          }
+        const casualtyMatch = parsedContents[3].match(/(사망) (\d+)명/);
+        const injuredMatch = parsedContents[3].match(/(부상) (\d+)명/);
+
+        if (casualtyMatch) {
+          acc[0] += parseInt(casualtyMatch[2]);
+        }
+        if (injuredMatch) {
+          acc[1] += parseInt(injuredMatch[2]);
         }
       }
 
@@ -53,13 +55,14 @@ export const getWeekCasualty = (news: News) => {
         ).getTime();
 
         if (accidentDateTimestamp > weekAgo.getTime()) {
-          const match = parsedContents[3].match(/(사망|부상) (\d+)명/);
-          if (match) {
-            if (match[1] === "사망") {
-              acc[0] += parseInt(match[2]);
-            } else {
-              acc[1] += parseInt(match[2]);
-            }
+          const casualtyMatch = parsedContents[3].match(/(사망) (\d+)명/);
+          const injuredMatch = parsedContents[3].match(/(부상) (\d+)명/);
+
+          if (casualtyMatch) {
+            acc[0] += parseInt(casualtyMatch[2]);
+          }
+          if (injuredMatch) {
+            acc[1] += parseInt(injuredMatch[2]);
           }
         }
       }
