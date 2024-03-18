@@ -4,7 +4,7 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 20px;
+  margin-bottom: 20px;
   width: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -13,7 +13,7 @@ const Container = styled.article`
 
 const Title = styled.h2`
   font-size: 1rem;
-  margin-bottom: 10px;
+  margin: 0;
 `;
 
 const Content = styled.div`
