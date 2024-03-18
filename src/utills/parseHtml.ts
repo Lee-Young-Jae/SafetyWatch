@@ -54,14 +54,6 @@ export const getWeekCasualty = (news: News) => {
 
         if (accidentDateTimestamp > weekAgo.getTime()) {
           const match = parsedContents[3].match(/(사망|부상) (\d+)명/);
-          console.log(
-            match,
-            parsedContents[3],
-            "날짜: ",
-            date,
-            accidentDateTimestamp,
-            weekAgo.getTime()
-          );
           if (match) {
             if (match[1] === "사망") {
               acc[0] += parseInt(match[2]);
