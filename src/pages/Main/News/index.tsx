@@ -1,4 +1,5 @@
 import { parseHtmlNews } from "../../../utills/parseHtml";
+import S from "./Style";
 
 interface NewsProps {
   arno: string;
@@ -8,9 +9,9 @@ interface NewsProps {
 
 const News = ({ arno, keyword, contents }: NewsProps) => {
   return (
-    <article key={arno}>
-      <h2>{keyword}</h2>
-      <div>
+    <S.Container key={arno}>
+      <S.Title>{keyword}</S.Title>
+      <S.Content>
         {parseHtmlNews(contents).map((el, key) => {
           return (
             <span key={key}>
@@ -19,8 +20,8 @@ const News = ({ arno, keyword, contents }: NewsProps) => {
             </span>
           );
         })}
-      </div>
-    </article>
+      </S.Content>
+    </S.Container>
   );
 };
 
