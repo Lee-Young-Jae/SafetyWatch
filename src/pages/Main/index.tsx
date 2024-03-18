@@ -5,6 +5,7 @@ import News from "./News";
 import S from "./Style";
 import Loading from "../../components/Loading";
 import TodayCasualty from "./TodayCasualty";
+import Clock from "./Clock";
 
 const serviceKey = import.meta.env.VITE_API_KEY;
 const url = `https://apis.data.go.kr/B552468/news_api01/getNews_api01?serviceKey=${serviceKey}&pageNo=1&numOfRows=40`;
@@ -38,7 +39,20 @@ const Main = () => {
           );
         })()}
       </>
+      <S.ClockSection>
+        <S.Title>사상자 지수</S.Title>
+        <>
+          {(function () {
+            const weekCasualty = getWeekCasualty(data);
+            return (
+              <Clock casualty={weekCasualty[0]} injured={weekCasualty[1]} />
+            );
+          })()}
+        </>
+      </S.ClockSection>
+
       <S.NewsSection>
+        <S.Title>최근 뉴스</S.Title>
         {data.map((news) => (
           <News
             key={news.arno}
