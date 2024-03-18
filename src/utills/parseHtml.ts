@@ -19,7 +19,6 @@ export const getTodayCasualty = (news: News) => {
     (acc, cur) => {
       const parsedContents = parseHtmlNews(cur.contents);
       const date = parsedContents[0];
-      console.log(todayString, date);
       if (date.includes(todayString)) {
         const casualtyMatch = parsedContents[3].match(/(사망) (\d+)명/);
         const injuredMatch = parsedContents[3].match(/(부상) (\d+)명/);
