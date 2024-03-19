@@ -61,6 +61,7 @@ const Clock = ({ casualty, injured }: ClockProps) => {
 
   return (
     <S.Container>
+      <S.Tooltip onClick={handleClick}>!</S.Tooltip>
       <S.Clock onClick={handleClick}>
         <div className="bad"></div>
         <div className="normal"></div>

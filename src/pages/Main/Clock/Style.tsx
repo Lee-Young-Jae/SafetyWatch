@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,8 +24,8 @@ const Clock = styled.div`
 
   & .bad {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     background-color: #ff8181;
     top: 0;
     left: 0;
@@ -34,8 +35,8 @@ const Clock = styled.div`
 
   & .normal {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     background-color: #ffdb58;
     top: 0;
     left: 0;
@@ -45,8 +46,8 @@ const Clock = styled.div`
 
   & .good {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     background-color: #a9ff58;
     top: 0;
     left: 0;
@@ -65,14 +66,36 @@ const Clock = styled.div`
   }
 `;
 
+const Tooltip = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  border: 1px solid #b0b0b0;
+  color: #b0b0b0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: color 0.2s, border 0.2s;
+  user-select: none;
+
+  &:hover {
+    color: #000;
+    border: 1px solid #000;
+  }
+`;
+
 const Needle = styled.div<{ $degree: number }>`
   position: absolute;
   width: 3px;
-  border-top-right-radius: 2px;
-  border-top-left-radius: 2px;
+  border-radius: 3px;
   height: calc(100% - 10px);
   background-color: #000000ce;
-  top: 10px;
+  top: 12px;
   left: 50%;
   transform-origin: 50% 100%;
   transform: rotate(${(props) => props.$degree}deg);
@@ -105,6 +128,7 @@ const S = {
   Needle,
   Description,
   Small,
+  Tooltip,
 };
 
 export default S;
