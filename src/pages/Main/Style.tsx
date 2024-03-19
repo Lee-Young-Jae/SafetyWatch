@@ -6,8 +6,6 @@ const Container = styled.div`
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 80%;
-  margin: 0 auto;
 `;
 
 const Title = styled.h2`
