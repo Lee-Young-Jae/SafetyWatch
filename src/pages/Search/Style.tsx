@@ -22,7 +22,7 @@ const Input = styled.input`
 `;
 
 const SearchButton = styled.button`
-  width: 4rem;
+  min-width: 4rem;
   height: 40px;
   background-color: #3498db;
   color: #fff;
