@@ -73,3 +73,7 @@ export const getWeekCasualty = (news: News) => {
 
   return casualty;
 };
+
+export const removeEm = (html: string) => {
+  return html.replace(/<em class='smart'>/g, "").replace(/<\/em>/g, "");
+};
