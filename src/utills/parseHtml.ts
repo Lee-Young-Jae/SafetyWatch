@@ -74,6 +74,12 @@ export const getWeekCasualty = (news: News) => {
   return casualty;
 };
 
-export const removeEm = (html: string) => {
-  return html.replace(/<em class='smart'>/g, "").replace(/<\/em>/g, "");
+export const removeEmAndImage = (html: string) => {
+  const removedEm = html
+    .replace(/<em class='smart'>/g, "")
+    .replace(/<\/em>/g, "");
+  const removedImage = removedEm
+    .replace(/<img[^>]+>/g, "")
+    .replace(/<\/img>/g, "");
+  return removedImage;
 };
