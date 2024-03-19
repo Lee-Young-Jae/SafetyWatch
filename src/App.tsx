@@ -4,17 +4,20 @@ import { Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
 import Search from "./pages/Search";
+import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/search" element={<Search />}></Route>
-        <Route path="/*" element={<Main />}></Route>
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/*" element={<Main />}></Route>
+        </Routes>
+      </Layout>
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   );

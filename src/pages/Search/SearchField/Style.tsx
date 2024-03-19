@@ -17,17 +17,16 @@ const SearchResultItem = styled.div`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-bottom: 20px;
+  padding: 10px 20px;
 `;
 
 const SearchResultTitle = styled.div`
   font-size: 1.2rem;
   margin-bottom: 10px;
-  padding: 10px 20px;
   font-weight: bold;
 `;
 
 const SearchResultContent = styled.div`
-  padding: 10px 20px;
   font-size: 1rem;
   margin-bottom: 10px;
   line-height: 1.5;
@@ -81,6 +80,13 @@ const Filter = styled.select`
   }
 `;
 
+const SubMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const S = {
   Container,
   SearchResult,
@@ -88,6 +94,7 @@ const S = {
   SearchResultTitle,
   SearchResultContent,
   Filter,
+  SubMessage,
 };
 
 export default S;

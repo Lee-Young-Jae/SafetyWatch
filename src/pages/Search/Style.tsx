@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
-  margin: 0 auto;
-  width: 80dvw;
-`;
+const Container = styled.div``;
 
 const InputField = styled.form`
   display: flex;
