@@ -12,7 +12,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="search" element={<Search />}></Route>
+        <Route path="/search" element={<Search />}></Route>
+        <Route path="/*" element={<Main />}></Route>
       </Routes>
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
