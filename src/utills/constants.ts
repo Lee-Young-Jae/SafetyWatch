@@ -1,6 +1,6 @@
 export const Casualty = {
-  INJURED_WEIGHT: 0.55,
-  CASUALTY_WEIGHT: 1.67,
+  INJURED_WEIGHT: 1,
+  CASUALTY_WEIGHT: 1,
   SCORE: {
     BAD_MAX: 8,
     BAD_MIN: 6,
