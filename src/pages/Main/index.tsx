@@ -14,7 +14,6 @@ const Main = () => {
     hasNextPage: true,
     fetchNextPage,
   });
-  console.log(data);
 
   if (!data) return <Loading />;
   if (isLoading) return <Loading />;
