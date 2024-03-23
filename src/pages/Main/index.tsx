@@ -4,20 +4,31 @@ import S from "./Style";
 import Loading from "../../components/Loading";
 import TodayCasualty from "./TodayCasualty";
 import Clock from "./Clock";
-import { useGetNews } from "../../hooks/queries/useNews";
+import { useGetInfiniteNews } from "../../hooks/queries/useNews";
+import { ResponseNews } from "../../types/news";
+import useIntersectionObserver from "../../hooks/useInterSection";
 
 const Main = () => {
-  const { isLoading, error, data } = useGetNews();
+  const { isLoading, error, data, fetchNextPage } = useGetInfiniteNews();
+  const { setTarget } = useIntersectionObserver({
+    hasNextPage: true,
+    fetchNextPage,
+  });
+  console.log(data);
 
+  if (!data) return <Loading />;
   if (isLoading) return <Loading />;
   if (error) return "An error has occurred: " + error.message;
-  if (!data) return "An error has occurred";
+
+  const flatedNews: ResponseNews["news"] = data.pages
+    .map((page) => page.news)
+    .flat();
 
   return (
     <S.Container>
       <>
         {(function () {
-          const todayCasualty = getTodayCasualty(data);
+          const todayCasualty = getTodayCasualty(flatedNews);
           return (
             <TodayCasualty
               casualty={todayCasualty[0]}
@@ -30,7 +41,7 @@ const Main = () => {
         <S.Title>사상자 지수</S.Title>
         <>
           {(function () {
-            const weekCasualty = getWeekCasualty(data);
+            const weekCasualty = getWeekCasualty(flatedNews);
             return (
               <Clock casualty={weekCasualty[0]} injured={weekCasualty[1]} />
             );
@@ -40,7 +51,7 @@ const Main = () => {
 
       <S.NewsSection>
         <S.Title>최근 뉴스</S.Title>
-        {data.map((news) => (
+        {flatedNews.map((news) => (
           <News
             key={news.arno}
             arno={news.arno}
@@ -49,6 +60,7 @@ const Main = () => {
           />
         ))}
       </S.NewsSection>
+      <div ref={(ref) => setTarget(ref)} />
     </S.Container>
   );
 };
