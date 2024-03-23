@@ -3,3 +3,8 @@ export type News = {
   contents: string;
   arno: string;
 }[];
+
+export type ResponseNews = {
+  news: News;
+  pageNo: number;
+};

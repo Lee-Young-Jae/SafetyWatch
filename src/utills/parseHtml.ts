@@ -45,13 +45,13 @@ export const getWeekCasualty = (news: News) => {
 
   const casualty = news.reduce(
     (acc, cur) => {
-      const accidentDate = cur.keyword.match(/\[(\d+\/\d+),/);
+      const accidentDate = cur.contents.match(
+        /([0-9]{4}. [0-9]{1,2}. [0-9]{1,2}.)/
+      );
       if (accidentDate) {
         const parsedContents = parseHtmlNews(cur.contents);
         const date = accidentDate[1];
-        const accidentDateTimestamp = new Date(
-          `${new Date().getFullYear()}/${date}`
-        ).getTime();
+        const accidentDateTimestamp = new Date(date).getTime();
 
         if (accidentDateTimestamp > weekAgo.getTime()) {
           const casualtyMatch = parsedContents[3].match(/(사망) (\d+)명/);
