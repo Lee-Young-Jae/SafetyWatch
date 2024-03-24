@@ -46,13 +46,12 @@ export const getWeekCasualty = (news: News) => {
   const casualty = news.reduce(
     (acc, cur) => {
       const accidentDate = cur.contents.match(
-        /([0-9]{4}. [0-9]{1,2}. [0-9]{1,2}.)/
+        /([0-9]{4}. [0-9]{1,2}. [0-9]{1,2})/
       );
 
       if (accidentDate) {
         const parsedContents = parseHtmlNews(cur.contents);
         const date = accidentDate[1].split(". ");
-        date[2] = date[2].replace(".", "");
 
         const accidentDateTimestamp = new Date(
           parseInt(date[0]),
