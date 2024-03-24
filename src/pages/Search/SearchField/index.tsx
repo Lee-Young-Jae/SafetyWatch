@@ -1,7 +1,7 @@
 import Loading from "../../../components/Loading";
 import { useGetAct } from "../../../hooks/queries/useAct";
 import S from "./Style";
-import { ActCategoryName } from "../../../utills/constants";
+import { ActCategoryName, ActCategory } from "../../../utills/constants";
 import { removeEmAndImage } from "../../../utills/parseHtml";
 import BoldifyKeyword from "../../../components/BoldifyKeyword";
 import { useState } from "react";
@@ -33,9 +33,7 @@ const SearchResult = ({ search, category }: SearchResultProps) => {
     return (
       <S.SubMessage>
         <Loading />
-        <p style={{ textAlign: "center" }}>
-          검색 결과가 많아 시간이 걸릴 수 있습니다.
-        </p>
+        <p style={{ textAlign: "center" }}>검색 결과를 불러오는 중입니다.</p>
       </S.SubMessage>
     );
   if (error)
@@ -64,11 +62,16 @@ const SearchResult = ({ search, category }: SearchResultProps) => {
           }}
         >
           {Object.keys(ActCategoryName)
-            .filter((item) => item !== "8" && item !== "9")
+            .filter(
+              (item) =>
+                // 공공데이터포털에서 아직 부여하지 않은 카테고리 제외
+                item !== ActCategory.UNCLASSIFIED &&
+                item !== ActCategory.UNCLASSIFIED2
+            )
             .map((key) => {
-              let newValue = +key;
+              let numberedKey = +key;
               return (
-                <option id={key} key={key} value={newValue}>
+                <option id={key} key={key} value={numberedKey}>
                   {ActCategoryName[+key]} {data.categorycount[+key]}
                 </option>
               );
