@@ -50,7 +50,6 @@ export const getWeekCasualty = (news: News) => {
       );
 
       if (accidentDate) {
-        const parsedContents = parseHtmlNews(cur.contents);
         const date = accidentDate[1].split(". ");
 
         const accidentDateTimestamp = new Date(
@@ -60,9 +59,16 @@ export const getWeekCasualty = (news: News) => {
         ).getTime();
 
         if (accidentDateTimestamp > weekAgo.getTime()) {
-          const casualtyMatch = parsedContents[3].match(/(사망) (\d+)명/);
-          const injuredMatch = parsedContents[3].match(/(부상) (\d+)명/);
+          console.log();
+          const casualty = parseHtmlNews(cur.contents).find((content) =>
+            content.includes("사망")
+          );
+          const injured = parseHtmlNews(cur.contents).find((content) =>
+            content.includes("부상")
+          );
 
+          const casualtyMatch = casualty?.match(/(사망) (\d+)명/);
+          const injuredMatch = injured?.match(/(부상) (\d+)명/);
           if (casualtyMatch) {
             acc[0] += parseInt(casualtyMatch[2]);
           }
