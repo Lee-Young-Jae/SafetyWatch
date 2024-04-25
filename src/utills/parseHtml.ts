@@ -2,7 +2,8 @@ import { News } from "../types/news";
 
 export const parseHtmlNews = (html: string) => {
   const contents = html.replace(/<br \s*\/?>/g, "\n").replace(/<[^>]+>/g, ``);
-  const splitContents = contents.split("\n");
+  const replacedNbspContents = contents.replace(/&nbsp;/g, "");
+  const splitContents = replacedNbspContents.split("\n");
   const filteredContents = splitContents.filter(
     (content) => content !== "" && content !== "\r" && content !== "&nbsp;"
   );
