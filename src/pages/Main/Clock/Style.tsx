@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const Container = styled.div`
   position: relative;
@@ -89,6 +89,15 @@ const Tooltip = styled.div`
   }
 `;
 
+const needleAnimation = (deg: number) => keyframes`
+  0% {
+    transform: rotate(${deg - 3}deg);
+  }
+  100% {
+    transform: rotate(${deg + 3}deg);
+  }
+`;
+
 const Needle = styled.div<{ $degree: number }>`
   position: absolute;
   width: 3px;
@@ -100,6 +109,7 @@ const Needle = styled.div<{ $degree: number }>`
   transform-origin: 50% 100%;
   transform: rotate(${(props) => props.$degree}deg);
   transition: transform 0.5s;
+  animation: ${(props) => needleAnimation(props.$degree)} 3s alternate infinite;
 `;
 
 const Description = styled.div`
