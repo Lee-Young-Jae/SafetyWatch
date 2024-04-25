@@ -19,7 +19,6 @@ const Main = () => {
   const [filterTitle, setFilterTitle] = useState<string>("");
 
   if (!data) return <Loading />;
-  if (isLoading) return <Loading />;
   if (error) return "An error has occurred: " + error.message;
 
   const flatedNews: ResponseNews["news"] = data.pages
@@ -77,6 +76,7 @@ const Main = () => {
             contents={news.contents}
           />
         ))}
+        {isLoading && <Loading />}
       </S.NewsSection>
       <div ref={(ref) => setTarget(ref)} />
     </S.Container>
