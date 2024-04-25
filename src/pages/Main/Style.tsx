@@ -30,10 +30,21 @@ const NewsSection = styled.section`
   width: 100%;
 `;
 
+const FilterInput = styled.input`
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
 const S = {
   Container,
   ClockSection,
   NewsSection,
   Title,
+  FilterInput,
 };
 export default S;

@@ -7,6 +7,8 @@ import Clock from "./Clock";
 import { useGetInfiniteNews } from "../../hooks/queries/useNews";
 import { ResponseNews } from "../../types/news";
 import useIntersectionObserver from "../../hooks/useInterSection";
+import { useState } from "react";
+import debounce from "../../utills/debounce";
 
 const Main = () => {
   const { isLoading, error, data, fetchNextPage } = useGetInfiniteNews();
@@ -14,6 +16,7 @@ const Main = () => {
     hasNextPage: true,
     fetchNextPage,
   });
+  const [filterTitle, setFilterTitle] = useState<string>("");
 
   if (!data) return <Loading />;
   if (isLoading) return <Loading />;
@@ -22,6 +25,16 @@ const Main = () => {
   const flatedNews: ResponseNews["news"] = data.pages
     .map((page) => page.news)
     .flat();
+
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterTitle(e.target.value);
+  };
+
+  const debouncedFilter = debounce(handleFilter, 500);
+
+  const filteredNews = flatedNews.filter((news) =>
+    news.keyword.includes(filterTitle)
+  );
 
   return (
     <S.Container>
@@ -50,7 +63,13 @@ const Main = () => {
 
       <S.NewsSection>
         <S.Title>최근 뉴스</S.Title>
-        {flatedNews.map((news) => (
+        <S.FilterInput
+          type="text"
+          placeholder="검색어를 입력하세요"
+          onChange={debouncedFilter}
+        />
+
+        {filteredNews.map((news) => (
           <News
             key={news.arno}
             arno={news.arno}
