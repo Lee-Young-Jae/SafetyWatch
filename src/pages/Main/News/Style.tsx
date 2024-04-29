@@ -22,12 +22,28 @@ const Content = styled.div`
   align-items: flex-start;
   margin-top: 20px;
   font-size: 0.9rem;
+  width: 100%;
+
+  & span {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+`;
+
+const GuideButton = styled.button`
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
 `;
 
 const S = {
   Container,
   Title,
   Content,
+  GuideButton,
 };
 
 export default S;

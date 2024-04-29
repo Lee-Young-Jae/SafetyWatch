@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { parseHtmlNews } from "../../../utills/parseHtml";
 import S from "./Style";
+import Guide from "../Guide";
 
 interface NewsProps {
   arno: string;
@@ -8,6 +10,12 @@ interface NewsProps {
 }
 
 const News = ({ arno, keyword, contents }: NewsProps) => {
+  const [showGuide, setShowGuide] = useState<boolean>(false);
+
+  const handleGuide = () => {
+    setShowGuide(!showGuide);
+  };
+
   return (
     <S.Container key={arno}>
       <S.Title>{keyword}</S.Title>
@@ -20,6 +28,8 @@ const News = ({ arno, keyword, contents }: NewsProps) => {
             </span>
           );
         })}
+        <S.GuideButton onClick={handleGuide}>관련 예방 지침 보기</S.GuideButton>
+        {showGuide && <Guide keyword={keyword} />}
       </S.Content>
     </S.Container>
   );
