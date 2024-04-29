@@ -1,4 +1,5 @@
 import Loading from "../../../components/Loading";
+import Skeleton from "../../../components/Skeleton";
 import { useGetAct } from "../../../hooks/queries/useAct";
 import { ActCategory } from "../../../utills/constants";
 import { getPureTitle, parseHtmlNews } from "../../../utills/parseHtml";
@@ -17,7 +18,7 @@ const Guide = ({ keyword }: GuideProps) => {
   if (isLoading)
     return (
       <S.Container>
-        <Loading />
+        <Skeleton count={2} />
       </S.Container>
     );
   if (!data)
