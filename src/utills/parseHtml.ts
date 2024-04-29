@@ -96,3 +96,9 @@ export const removeEmAndImage = (html: string) => {
     .replace(/<\/img>/g, "");
   return removedImage;
 };
+
+export const getPureTitle = (html: string) => {
+  const removedTag = html.replace(/<[^>]+>/g, "");
+  const splitTitle = removedTag.split("]");
+  return splitTitle[1];
+};
