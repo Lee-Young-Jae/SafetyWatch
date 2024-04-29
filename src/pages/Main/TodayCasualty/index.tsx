@@ -8,11 +8,12 @@ interface TodayCasualtyProps {
 const TodayCasualty = ({ casualty, injured }: TodayCasualtyProps) => {
   return (
     <S.Container>
+      <p>오늘 사상자 : </p>
       <p>
-        Today's casualty: <span>{casualty}</span>
+        사망 <span>{casualty}</span>
       </p>
       <p>
-        Today's injured: <span>{injured}</span>
+        부상 <span>{injured}</span>
       </p>
     </S.Container>
   );
