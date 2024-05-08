@@ -21,8 +21,12 @@ export const getTodayCasualty = (news: News) => {
       const parsedContents = parseHtmlNews(cur.contents);
       const date = parsedContents[0];
       if (date.includes(todayString)) {
-        const casualtyMatch = parsedContents[3].match(/(사망) (\d+)명/);
-        const injuredMatch = parsedContents[3].match(/(부상) (\d+)명/);
+        const casualtyMatch = parsedContents
+          .find((content) => content.includes("사망"))
+          ?.match(/(사망) (\d+)명/);
+        const injuredMatch = parsedContents
+          .find((content) => content.includes("부상"))
+          ?.match(/(부상) (\d+)명/);
 
         if (casualtyMatch) {
           acc[0] += parseInt(casualtyMatch[2]);
