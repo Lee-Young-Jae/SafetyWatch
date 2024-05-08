@@ -14,6 +14,7 @@ const Search = () => {
 
   return (
     <S.Container>
+      <h2>법령 검색</h2>
       <S.InputField id="search_form" onSubmit={onSubmit}>
         <S.Input
           type="text"
