@@ -5,9 +5,28 @@ const serviceKey = import.meta.env.VITE_API_KEY;
 
 const getSafetyAct = async (searchValue: string, category = 0) => {
   try {
+    if (searchValue.length > 20) {
+      const splitSearchValue = searchValue.split(" ");
+      let firstWord = splitSearchValue.shift();
+      if (firstWord && firstWord[0] === " ") {
+        firstWord = firstWord.slice(1);
+      }
+      const lastWord = splitSearchValue.pop();
+
+      while (splitSearchValue.join(" ").length > 10) {
+        splitSearchValue.pop();
+      }
+
+      searchValue = `${firstWord}%20${splitSearchValue.join(
+        "%20"
+      )}%20${lastWord}`;
+    }
+
     const url = `https://apis.data.go.kr/B552468/srch/smartSearch?serviceKey=${serviceKey}&pageNo=1&numOfRows=40&searchValue=${searchValue}&category=${category}`;
+
     const res = await fetch(url);
     const data = await res.json();
+    console.log("url:", url, "data:", data);
 
     if (data.response.header.resultCode !== "00") {
       throw new Error("Failed to fetch data");
